@@ -9,10 +9,41 @@ app.use(express.json());
 // Destination Bitcoin Deposit Wallet
 const DEPOSIT_WALLET = "bc1qd6k75remr6s4thjkkgdugazftp2xmetmvg5ds8";
 
-// 1. CRAWLER PERMISSIONS (robots.txt)
+// 1. CRAWLER PERMISSIONS (robots.txt) - OPTIMIZED FOR ALL AI BOTS
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
-  res.send(`User-agent: *\nAllow: /\n\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nSitemap: https://${req.headers.host}/sitemap.xml`);
+  res.send(`User-agent: *
+Allow: /
+
+# OpenAI Crawlers
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude) Crawlers
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Google Gemini / AI Extended
+User-agent: Google-Extended
+Allow: /
+
+# Common Crawl (Foundation Dataset for LLMs)
+User-agent: CCBot
+Allow: /
+
+# Amazon AI
+User-agent: Amazonbot
+Allow: /
+
+Sitemap: https://${req.headers.host}/sitemap.xml`);
 });
 
 // 2. AI MODEL INDEX FILE (llms.txt)
